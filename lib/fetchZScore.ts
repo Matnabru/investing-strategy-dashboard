@@ -8,7 +8,7 @@ interface GoogleVizResponse {
     };
   }
   
-  interface ZScoreRow {
+  export interface ZScoreRow {
     date: string;
     zScore: number | null;
   }

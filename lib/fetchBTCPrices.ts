@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { subDays, differenceInCalendarDays, addDays } from 'date-fns';
 
-interface SimplifiedBinanceKline {
+export interface SimplifiedBinanceKline {
   close: string;
   closeTime: number;
 }

@@ -1,43 +1,45 @@
+// Note that fetchBTCPrices and fetchZScores imports are no longer needed.
+
 "use client"
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from "apexcharts";
-import { fetchBTCPrices } from '@/lib/fetchBTCPrices'; // Ensure this path is correct
-import { fetchZScores } from '@/lib/fetchZscore';
+import { SimplifiedBinanceKline } from '@/lib/fetchBTCPrices';
+import { ZScoreRow } from '@/lib/fetchZScore';
 
-const BTCChart = () => {
+type BtcChartType = {
+    btcData: SimplifiedBinanceKline[],
+    zScoreData: ZScoreRow[]
+}
+
+const BTCChart = ({ btcData, zScoreData }: BtcChartType) => {
     const [series, setSeries] = useState<any[]>([]);
 
     useEffect(() => {
-        const loadData = async () => {
-            const data = await fetchBTCPrices();
+        // Assuming btcData and zScoreData are already in the expected format,
+        // directly map them to the format required by ApexCharts.
+        const btcPriceData = btcData.map(d => ({
+            x: new Date(d.closeTime).toISOString(),
+            y: parseFloat(d.close)
+        }));
 
+        const formattedZScoreData = zScoreData.map(d => ({
+            x: new Date(d.date).toISOString(),
+            y: (d.zScore ? -d.zScore : d.zScore)
+        }));
 
-            const btcPriceData = data.map(d => ({
-                x: new Date(d.closeTime).toISOString(),
-                y: parseFloat(d.close)
-            }));
-
-            const zScoreData = await fetchZScores();
-            const formattedZScoreData = zScoreData.map(d => ({
-                x: new Date(d.date).toISOString(),
-                y: d.zScore
-            }));
-
-            setSeries([
-                {
-                    name: "BTC Price",
-                    data: btcPriceData,
-                },
-                {
-                    name: "Z-Score",
-                    data: formattedZScoreData,
-                }
-            ]);
-        };
-
-        loadData();
-    }, []);
+        setSeries([
+            {
+                name: "BTC Price",
+                data: btcPriceData,
+            },
+            {
+                name: "Z-Score",
+                data: formattedZScoreData,
+            }
+        ]);
+    // The useEffect dependency array now includes btcData and zScoreData to re-render when these props change.
+    }, [btcData, zScoreData]);
 
     const options: ApexOptions = {
         chart: {
