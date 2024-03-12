@@ -34,7 +34,7 @@ const SDCAExplanation: React.FC<SDCAExplanationProps> = ({ imageSrc, indicatorSr
                 Combining multiple indicators like shown below we rate them across normal distribution.
                 <Image src={indicatorSrc} alt="SDCA" className="rounded-lg mb-4" width={1080} height={600} />
                 <br /><br /><strong>Current system has multiple fundamental, technical and sentiment indicators, this add up to the average score that represent current state of Bitcoin cycle.</strong>
-                <br /> In case of our SDCA strategy values range from -3 to 3 where 3 means approximate of the market cycle and -3 means bottom.
+                <br /> In case of our SDCA strategy values range from -3 to 3 where 3 means approximate top of the market cycle and -3 means bottom. To correctly assess situation it might be worth considering values above 2 as a sell signal and values below -1.5 as a buy.
             </p>
 
             <p className="text-white text-lg mt-4">

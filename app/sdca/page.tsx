@@ -19,7 +19,7 @@ export default function Home() {
             const btcPrices = await fetchBTCPrices();
             const zScores = await fetchZScores();
 
-            
+
             setBtcData(btcPrices);
             setZScoreData(zScores);
         };
@@ -35,10 +35,13 @@ export default function Home() {
             <Navbar />
             {/* Pass data to BTCChart */}
             <BTCChart btcData={btcData} zScoreData={zScoreData} />
-            <div className="bg-gray-800 min-h-screen text-white flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-bold text-white mb-4">Strategic Dollar Cost Averaging (SDCA)</h2>
-                <p> Current Z-Score: {-lastZScoreValue} </p>
-                <GaugeChart value={-lastZScoreValue/2} />
+            <div className="bg-gray-800 min-h-screen text-white flex flex-col items-center justify-center px-[10vw]">
+                <div className='mt-3 flex flex-col items-center'>
+                    <h2 className="text-2xl font-bold text-white mb-4">Strategic Dollar Cost Averaging (SDCA)</h2>
+                    <p> Current Z-Score: {-lastZScoreValue} </p>
+                    <GaugeChart value={-lastZScoreValue / 2} />
+                </div>
+
                 <SDCAExplanation imageSrc="/dollarCostAverage.jpg" zscoreSrc="/ZSCORE.png" indicatorSrc="/RHODL.png" />
             </div>
         </div>
