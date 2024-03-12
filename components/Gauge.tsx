@@ -27,7 +27,7 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value }) => {
 
 const drawGauge = (element: SVGSVGElement, percent: number) => {
   const width = 400;
-  const height = 400;
+  const height = 600;
   const radius = Math.min(width, height) / 2;
   const barWidth = 40;
   const numSections = 3;

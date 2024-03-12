@@ -31,12 +31,12 @@ export default function Home() {
     const lastZScoreValue = zScoreData.length > 0 ? zScoreData[zScoreData.length - 1].zScore : 0;
 
     return (
-        <div>
-            <Navbar />
-            {/* Pass data to BTCChart */}
-            <BTCChart btcData={btcData} zScoreData={zScoreData} />
-            <div className="bg-gray-800 min-h-screen text-white flex flex-col items-center justify-center px-[10vw]">
-                <div className='mt-3 flex flex-col items-center'>
+        <div className='bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-8'>
+            <div className='bg-white/80 backdrop-blur-lg p-4 mx-[10vw]  '>
+                <BTCChart btcData={btcData} zScoreData={zScoreData} />
+            </div>
+            <div className="bg-gray-800 text-white min-h-screen flex flex-col items-center justify-center mx-[10vw]">
+                <div className=' mt-3 flex flex-col items-center'>
                     <h2 className="text-2xl font-bold text-white mb-4">Strategic Dollar Cost Averaging (SDCA)</h2>
                     <p> Current Z-Score: {-lastZScoreValue} </p>
                     <GaugeChart value={-lastZScoreValue / 2} />
